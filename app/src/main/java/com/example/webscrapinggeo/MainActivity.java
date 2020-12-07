@@ -59,37 +59,71 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
 
+//            try {
+//                String url = "https://www.geo.tv/category/pakistan";
+//
+//                Document doc = Jsoup.connect(url).get();
+//
+//               // Elements data = doc.select("div.pic");
+//                Elements data= doc.select("li.border-box");
+//                int size = data.size();
+//                Log.d("doc", "doc: "+doc);
+//                Log.d("data", "data: "+data);
+//                Log.d("size", ""+size);
+//                for (int i = 0; i < size; i++) {
+//                    String imgUrl = data.select("div.pic")
+//                            .select("img")
+//                            .eq(i)
+//                            .attr("src");
+//
+//                    String title = data.select("div.pic")
+//                            .select("img")
+//                            .eq(i)
+//                            .attr("title");
+//
+//
+//                   String detailUrl = data.select("li.border-box")
+//                            .select("a")
+//                            .eq(i)
+//                            .attr("href");
+//
+//                    parseItems.add(new ParseItem(imgUrl, title, detailUrl));
+//                    Log.d("items", "img: " + imgUrl + " . title: " + title+"Detail Url: "+detailUrl);
+//                }
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
             try {
-                String url = "https://www.geo.tv/category/pakistan";
+                String url = "https://www.dawnnews.tv/latest-news";
 
                 Document doc = Jsoup.connect(url).get();
 
-               // Elements data = doc.select("div.pic");
-                Elements data= doc.select("li.border-box");
+                // Elements data = doc.select("div.pic");
+                Elements data= doc.select("article.box");
                 int size = data.size();
                 Log.d("doc", "doc: "+doc);
                 Log.d("data", "data: "+data);
                 Log.d("size", ""+size);
-                for (int i = 0; i < size; i++) {
-                    String imgUrl = data.select("div.pic")
+                for (int i = 0; i < 15; i++) {
+                    String imgUrl = data.select("div.media__item")
                             .select("img")
                             .eq(i)
                             .attr("src");
 
-                    String title = data.select("div.pic")
-                            .select("img")
+                    String title = data.select("h2.story__title")
+                            .select("a.story__link")
                             .eq(i)
-                            .attr("title");
+                            .text();
 
-
-                   String detailUrl = data.select("li.border-box")
+                    String detailUrl = data.select("h2.story__title")
                             .select("a")
                             .eq(i)
                             .attr("href");
 
                     parseItems.add(new ParseItem(imgUrl, title, detailUrl));
                     Log.d("items", "img: " + imgUrl + " . title: " + title+"Detail Url: "+detailUrl);
-                }
+               }
 
             } catch (IOException e) {
                 e.printStackTrace();

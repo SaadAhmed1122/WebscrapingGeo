@@ -34,6 +34,8 @@
             android:layout_gravity="bottom"
             android:id="@+id/textview"
             android:text="Title"
+            android:textSize="32sp"
+            android:textStyle="bold"
             style="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#fff"
             android:layout_marginStart="12dp"
